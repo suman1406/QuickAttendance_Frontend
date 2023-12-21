@@ -2,40 +2,43 @@
 
 Welcome to the Quick Attendance Application! This guide will walk you through the features and functionality of the application, helping you make the most of its capabilities. If you encounter any issues or have questions, refer to the troubleshooting section or contact our support team.
 
-## Table of Contents
+<details>
+  <summary>Table of Contents</summary>
 
-1. [Introduction](#introduction)
-2. [Installation and Configuration](#installation-and-configuration)
-3. [User Roles](#user-roles)
+  1. [Introduction](#introduction)
+  2. [Installation and Configuration](#installation-and-configuration)
+  3. [User Roles](#user-roles)
     - [Professor (User Role: 0)](#professor-user-role-0)
     - [Administrator (User Role: 1)](#administrator-user-role-1)
-4. [Features and Functionality](#features-and-functionality)
+  4. [Features and Functionality](#features-and-functionality)
     - [QR Code-Based Attendance](#qr-code-based-attendance)
     - [Admin/Professor Functionality](#adminprofessor-functionality)
     - [Real-time Attendance Tracking](#real-time-attendance-tracking)
-5. [Security Measures](#security-measures)
+  5. [Security Measures](#security-measures)
     - [Data Security](#data-security)
     - [User Authentication](#user-authentication)
-6. [Database Design](#database-design)
+  6. [Database Design](#database-design)
     - [Entity-Relationship Diagram](#entity-relationship-diagram)
     - [Database Schema](#database-schema)
-7. [Excel Sheet Automation](#excel-sheet-automation)
+  7. [Excel Sheet Automation](#excel-sheet-automation)
     - [Data Export to Excel](#data-export-to-excel)
     - [Excel Sheet Format](#excel-sheet-format)
-8. [Scalability](#scalability)
+  8. [Scalability](#scalability)
     - [Design for Scalability](#design-for-scalability)
     - [Performance Considerations](#performance-considerations)
-9. [User Guide](#user-guide)
+  9. [User Guide](#user-guide)
     - [Getting Started](#getting-started)
     - [Adding Students](#adding-students)
     - [QR Code Scanning](#qr-code-scanning)
     - [Managing Classes](#managing-classes)
     - [Viewing Reports](#viewing-reports)
     - [Troubleshooting](#troubleshooting)
-10. [Conclusion](#conclusion)
+  10. [Conclusion](#conclusion)
     - [Project Summary](#project-summary)
     - [Lessons Learned](#lessons-learned)
-11. [Appendices](#appendices)
+  11. [Appendices](#appendices)
+
+</details>
 
 ## 1. Introduction
 
@@ -47,7 +50,7 @@ The Quick Attendance Application modernizes student attendance management at Amr
 
 To install Quick Attendance:
 
-1. Download the latest release APK from the [GitHub Release Page](#github-release-link).
+1. Download the latest release APK from the Playstore (Link will be shared soon).
 2. Install the APK on your Android device.
 
 ### Configuration
@@ -191,5 +194,8 @@ Reflecting on the project journey, we've gained insights that contribute to ongo
 ### Appendix C: Mentors
 - **Dr. Senthil Kumar T:** Mentor
 - **B. Senthil Kumar:** Mentor
+
+### Appendix D: Server Code Repository
+- For the server code repository, visit [Server Code Repository](https://github.com/suman1406/quick_attendance_server_code).
 
 ---
