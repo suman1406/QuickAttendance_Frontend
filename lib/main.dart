@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:intl/intl.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:quick_attednce/auth/login_screen.dart';
 import 'package:quick_attednce/professor/p_home_screen.dart';
 import 'package:quick_attednce/utils/components/loading_screen.dart';

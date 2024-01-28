@@ -1,7 +1,7 @@
 class ApiConstants {
-  static const String baseUrl = 'http://192.168.126.229:5000/api';
+  static const String baseUrl = 'http://192.168.249.229:5000/api';
 
-  String url = 'http://192.168.126.229:5000/api';
+  String url = 'http://192.168.249.229:5000/api';
 
   String login = '$baseUrl/login';
   String loginVerify = '$baseUrl/loginVerify';
@@ -47,4 +47,5 @@ class ApiConstants {
   String addAttendance = '$baseUrl/add-attendance';
   String reqSlotID = '$baseUrl/req-slotID';
   String getAttendanceForSlot = '$baseUrl/attendance-slot';
+  String getAttendanceForCourse = '$baseUrl/attd-coursewise';
 }

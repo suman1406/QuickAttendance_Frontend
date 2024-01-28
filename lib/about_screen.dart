@@ -121,7 +121,7 @@ class AboutPageState extends State<AboutPage> {
                   borderRadius: BorderRadius.circular(16.0),
                   onTap: () {
                     launchUrl(
-                      Uri.parse("https://github.com/suman1406"),
+                      Uri.parse("https://suman1406.github.io/Portfolio/"),
                       mode: LaunchMode.externalApplication,
                     );
                   },
@@ -282,6 +282,200 @@ class AboutPageState extends State<AboutPage> {
                               elevation: 3,
                               label: Text(
                                 "Backend Developer",
+                                style: GoogleFonts.raleway(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground,
+                                    textStyle: const TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500)),
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                Text(
+                  "Mentors",
+                  style: GoogleFonts.raleway(
+                    textStyle: TextStyle(
+                        fontSize: 32,
+                        color: Theme.of(context).colorScheme.onBackground),
+                  ),
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                InkWell(
+                  borderRadius: BorderRadius.circular(16.0),
+                  onTap: () {
+                    launchUrl(
+                      Uri.parse("https://www.amrita.edu/faculty/t-senthilkumar/"),
+                      mode: LaunchMode.externalApplication,
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    width: 300,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey.withOpacity(0.3),
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const CircleAvatar(
+                          foregroundImage: AssetImage(
+                            "assets/mentor1.jpeg",
+                          ),
+                          radius: 32.0,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Dr. Senthil Kumar T.",
+                              style: GoogleFonts.raleway(
+                                textStyle: TextStyle(
+                                    fontSize: 16,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground),
+                              ),
+                            ),
+                            Text(
+                              "Amrita Vishwa Vidyapeetham",
+                              style: GoogleFonts.raleway(
+                                textStyle: TextStyle(
+                                    fontSize: 12,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onErrorContainer),
+                              ),
+                            ),
+                            Text(
+                              "Coimbatore, Tamil Nadu",
+                              style: GoogleFonts.raleway(
+                                textStyle: TextStyle(
+                                    fontSize: 12,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground),
+                              ),
+                            ),
+                            Chip(
+                              padding: const EdgeInsets.all(1),
+                              backgroundColor: Theme.of(context)
+                                  .colorScheme
+                                  .brightness ==
+                                  Brightness.dark
+                                  ? Colors.black
+                                  : Theme.of(context).colorScheme.background,
+                              elevation: 3,
+                              label: Text(
+                                "Associate Professor",
+                                style: GoogleFonts.raleway(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground,
+                                    textStyle: const TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w500)),
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                InkWell(
+                  borderRadius: BorderRadius.circular(16.0),
+                  onTap: () {
+                    launchUrl(
+                      Uri.parse(
+                          "https://www.amrita.edu/faculty/b-senthilkumar/"),
+                      mode: LaunchMode.externalApplication,
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    width: 300,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey.withOpacity(0.3),
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const CircleAvatar(
+                          foregroundImage: AssetImage(
+                            "assets/mentor2.jpeg",
+                          ),
+                          radius: 32.0,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "B. Senthil Kumar",
+                              style: GoogleFonts.raleway(
+                                textStyle: TextStyle(
+                                    fontSize: 16,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground),
+                              ),
+                            ),
+                            Text(
+                              "Amrita Vishwa Vidyapeetham",
+                              style: GoogleFonts.raleway(
+                                textStyle: TextStyle(
+                                    fontSize: 12,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onErrorContainer),
+                              ),
+                            ),
+                            Text(
+                              "Coimbatore, Tamil Nadu",
+                              style: GoogleFonts.raleway(
+                                textStyle: TextStyle(
+                                    fontSize: 12,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground),
+                              ),
+                            ),
+                            Chip(
+                              padding: const EdgeInsets.all(1),
+                              backgroundColor: Theme.of(context)
+                                  .colorScheme
+                                  .brightness ==
+                                  Brightness.dark
+                                  ? Colors.black
+                                  : Theme.of(context).colorScheme.background,
+                              elevation: 3,
+                              label: Text(
+                                "Associate Professor",
                                 style: GoogleFonts.raleway(
                                     color: Theme.of(context)
                                         .colorScheme
