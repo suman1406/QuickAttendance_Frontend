@@ -1,7 +1,7 @@
 class ApiConstants {
-  static const String baseUrl = 'http://192.168.249.229:5000/api';
+  static const String baseUrl = 'https://f788-103-5-112-80.ngrok-free.app/api';
 
-  String url = 'http://192.168.249.229:5000/api';
+  String url = 'https://f788-103-5-112-80.ngrok-free.app/api';
 
   String login = '$baseUrl/login';
   String loginVerify = '$baseUrl/loginVerify';

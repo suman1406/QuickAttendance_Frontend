@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:dio/dio.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart' as xcel;
 import 'package:file_saver/file_saver.dart';
@@ -80,6 +81,24 @@ class DownloadExcelState extends State<DownloadExcel> {
     }
   }
 
+  static Future<String> getExternalDocumentPath() async {
+    var status = await Permission.storage.status;
+    if (!status.isGranted) {
+      await Permission.storage.request();
+    }
+    Directory _directory = Directory("");
+    if (Platform.isAndroid) {
+      _directory = Directory("/storage/emulated/0/Download");
+    } else {
+      _directory = await getApplicationDocumentsDirectory();
+    }
+
+    final exPath = _directory.path;
+    print("Saved Path: $exPath");
+    await Directory(exPath).create(recursive: true);
+    return exPath;
+  }
+
   void _generateAndDownloadExcel() async {
     try {
       // Prepare data for sending to the server
@@ -135,11 +154,13 @@ class DownloadExcelState extends State<DownloadExcel> {
 
           final String fileName =
               'attendance_data_${DateTime.now().millisecondsSinceEpoch}.xls';
+          // final String filePath = await getExternalDocumentPath();
 
           FileSaver.instance.saveFile(
             name: fileName,
             bytes: uint8List,
             mimeType: MimeType.microsoftExcel,
+            // filePath: filePath
           );
 
           final directory = await getApplicationDocumentsDirectory();

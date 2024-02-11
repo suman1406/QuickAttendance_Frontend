@@ -55,6 +55,8 @@ dependencies:
   file_saver: ^0.2.9
   lecle_downloads_path_provider: ^0.0.2+8
   android_path_provider: ^0.3.0
+  audioplayers: ^5.2.1
+  flutter_beep: ^1.0.0
 
 dev_dependencies:
   flutter_test:

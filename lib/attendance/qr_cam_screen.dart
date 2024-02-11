@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_beep/flutter_beep.dart';
 import 'package:intl/intl.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:quick_attednce/utils/api_constants.dart';
@@ -28,7 +30,7 @@ class QRScanningPageState extends State<QRScanningPage> {
   late QRViewController controller;
   Set<String> scannedDataSet = {}; // Store scanned data here
 
-  Future<void> sendScannedData() async {
+  Future<void> sendScannedData(String scannedData) async {
     final String? slotIds = widget.slotIds;
     final String course = widget.course;
     final String timestamp = DateFormat('yyyy-MM-dd').format(DateTime.now());
@@ -81,6 +83,10 @@ class QRScanningPageState extends State<QRScanningPage> {
         print('Error sending data: $error');
       }
     }
+  }
+
+  void playBeepSound() async {
+    FlutterBeep.beep();
   }
 
   @override
@@ -137,6 +143,12 @@ class QRScanningPageState extends State<QRScanningPage> {
                       setState(() {
                         scannedDataSet.add(code);
                       });
+
+                      // Play beep sound when data is scanned
+                      playBeepSound();
+
+                      // Send scanned data directly to the backend
+                      sendScannedData(code);
                     }
                   }, onError: (error) {
                     if (kDebugMode) {
@@ -196,13 +208,6 @@ class QRScanningPageState extends State<QRScanningPage> {
                 ),
               ),
             ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              // Call the function to send scanned data
-              sendScannedData();
-            },
-            child: const Text('Send Data'),
           ),
         ],
       ),
