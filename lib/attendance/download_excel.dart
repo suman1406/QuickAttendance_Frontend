@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:dio/dio.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart' as xcel;
 import 'package:file_saver/file_saver.dart';
@@ -64,7 +63,8 @@ class DownloadExcelState extends State<DownloadExcel> {
               courses.insert(0, 'Select a course');
             }
 
-            selectedCourse = courses.isNotEmpty ? courses[0] : 'Select a course';
+            selectedCourse =
+                courses.isNotEmpty ? courses[0] : 'Select a course';
           });
         } else {
           showToast('Invalid response format');
@@ -79,24 +79,6 @@ class DownloadExcelState extends State<DownloadExcel> {
         print('Error fetching course names: $error');
       }
     }
-  }
-
-  static Future<String> getExternalDocumentPath() async {
-    var status = await Permission.storage.status;
-    if (!status.isGranted) {
-      await Permission.storage.request();
-    }
-    Directory _directory = Directory("");
-    if (Platform.isAndroid) {
-      _directory = Directory("/storage/emulated/0/Download");
-    } else {
-      _directory = await getApplicationDocumentsDirectory();
-    }
-
-    final exPath = _directory.path;
-    print("Saved Path: $exPath");
-    await Directory(exPath).create(recursive: true);
-    return exPath;
   }
 
   void _generateAndDownloadExcel() async {
@@ -130,8 +112,9 @@ class DownloadExcelState extends State<DownloadExcel> {
         final dynamic responseData = response.data;
 
         if (responseData is List<dynamic>) {
+          print('Response data: $responseData');
           List<Map<String, dynamic>> excelData =
-          List<Map<String, dynamic>>.from(responseData);
+              List<Map<String, dynamic>>.from(responseData);
 
           xcel.Workbook workbook = xcel.Workbook();
           xcel.Worksheet sheet = workbook.worksheets[0];
@@ -146,7 +129,9 @@ class DownloadExcelState extends State<DownloadExcel> {
             int totalAttendance = studentData['TOT_ATTD'] ?? 0;
 
             sheet.getRangeByIndex(i + 2, 1).setText(rollNo); // Start from row 2
-            sheet.getRangeByIndex(i + 2, 2).setNumber(totalAttendance.toDouble());
+            sheet
+                .getRangeByIndex(i + 2, 2)
+                .setNumber(totalAttendance.toDouble());
           }
 
           List<int> bytes = workbook.saveAsStream();
@@ -154,21 +139,14 @@ class DownloadExcelState extends State<DownloadExcel> {
 
           final String fileName =
               'attendance_data_${DateTime.now().millisecondsSinceEpoch}.xls';
-          // final String filePath = await getExternalDocumentPath();
 
-          FileSaver.instance.saveFile(
-            name: fileName,
-            bytes: uint8List,
-            mimeType: MimeType.microsoftExcel,
-            // filePath: filePath
-          );
+          final directory_download = '/storage/emulated/0/Download';
 
-          final directory = await getApplicationDocumentsDirectory();
-          final filePath = '${directory.path}/$fileName';
+          final String filePath = '$directory_download/$fileName';
+
+          File file = File(filePath);
+          await file.writeAsBytes(uint8List);
           print('File saved at: $filePath');
-
-          workbook.dispose();
-
           showToast('Excel file generated successfully');
         } else {
           showToast('Failed to generate Excel file');

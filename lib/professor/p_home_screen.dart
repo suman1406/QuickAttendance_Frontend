@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quick_attednce/attendance/attendance_details.dart';
 import 'package:quick_attednce/attendance/attendance_for_slot.dart';
+import 'package:quick_attednce/auth/login_screen.dart';
 import 'package:quick_attednce/class/create_class.dart';
 import 'package:quick_attednce/class/my_class.dart';
 import 'package:quick_attednce/course/create_course.dart';
@@ -83,6 +84,22 @@ class ProfessorHomeScreenState extends State<ProfessorHomeScreen> {
               ),
               backgroundColor: Theme.of(context).colorScheme.primary,
               actions: [
+                IconButton(
+                  icon: Icon(
+                    Icons.logout,
+                    color: Theme.of(context).colorScheme.onSecondary,
+                  ),
+                  onPressed: () {
+                    SharedPreferences prefs =
+                        SharedPreferences.getInstance() as SharedPreferences;
+                    prefs.setBool('isLogin', false);
+                    Navigator.of(context).push(CupertinoPageRoute(
+                      builder: (context) {
+                        return const LoginScreen();
+                      },
+                    ));
+                  },
+                ),
                 IconButton(
                   icon: Icon(
                     Icons.qr_code_scanner_rounded,
@@ -237,37 +254,36 @@ class ProfessorHomeScreenState extends State<ProfessorHomeScreen> {
                       title: 'Linking',
                       actions: [
                         buildActionCard(context, 'Link Prof/Course to a class',
-                                () {
-                              Navigator.of(context).push(CupertinoPageRoute(
-                                builder: (context) {
-                                  return const LinkProfCourseClassPage();
-                                },
-                              ));
-                            }),
+                            () {
+                          Navigator.of(context).push(CupertinoPageRoute(
+                            builder: (context) {
+                              return const LinkProfCourseClassPage();
+                            },
+                          ));
+                        }),
                         buildActionCard(context, 'Link Professor to a Course',
-                                () {
-                              Navigator.of(context).push(CupertinoPageRoute(
-                                builder: (context) {
-                                  return const LinkProfCoursePage();
-                                },
-                              ));
-                            }),
+                            () {
+                          Navigator.of(context).push(CupertinoPageRoute(
+                            builder: (context) {
+                              return const LinkProfCoursePage();
+                            },
+                          ));
+                        }),
                         buildActionCard(context, 'Delete Prof/Course class',
-                                () {
-                              Navigator.of(context).push(CupertinoPageRoute(
-                                builder: (context) {
-                                  return const DeleteProfCourseClassPage();
-                                },
-                              ));
-                            }),
-                        buildActionCard(context, 'Delete Professor Course',
-                                () {
-                              Navigator.of(context).push(CupertinoPageRoute(
-                                builder: (context) {
-                                  return const DeleteProfCoursePage();
-                                },
-                              ));
-                            }),
+                            () {
+                          Navigator.of(context).push(CupertinoPageRoute(
+                            builder: (context) {
+                              return const DeleteProfCourseClassPage();
+                            },
+                          ));
+                        }),
+                        buildActionCard(context, 'Delete Professor Course', () {
+                          Navigator.of(context).push(CupertinoPageRoute(
+                            builder: (context) {
+                              return const DeleteProfCoursePage();
+                            },
+                          ));
+                        }),
                       ],
                     ),
                     const SizedBox(height: 10.0),
