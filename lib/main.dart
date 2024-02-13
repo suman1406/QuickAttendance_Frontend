@@ -1,10 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dynamic_color/dynamic_color.dart';
-import 'package:intl/intl.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:quick_attednce/auth/login_screen.dart';
 import 'package:quick_attednce/professor/p_home_screen.dart';
 import 'package:quick_attednce/utils/components/loading_screen.dart';
@@ -14,49 +11,16 @@ import 'admin/a_home_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // SharedPreferences sp = await SharedPreferences.getInstance();
-  // final String? expiry = sp.getString("expiry");
-  // bool isLogin = sp.getBool("isLogin") ?? false;
-  //
-  // if (expiry != null) {
-  //   try {
-  //     DateTime expiryDateTime = DateFormat('YYYY-MM-DD HH:MM:SS').parse(expiry);
-  //     DateTime currentDateTime = DateTime.now().toUtc();
-  //
-  //     if (currentDateTime.isAfter(expiryDateTime)) {
-  //       if (kDebugMode) {
-  //         print("The expiry has expired.");
-  //       }
-  //       isLogin = false;
-  //     } else {
-  //       if (kDebugMode) {
-  //         print("The expiry is still valid.");
-  //       }
-  //       isLogin = true;
-  //     }
-  //   } on FormatException catch (e) {
-  //     if (kDebugMode) {
-  //       print("Expiry is not a valid date format. ${e.toString()}");
-  //     }
-  //     isLogin = false;
-  //   } catch (e) {
-  //     if (kDebugMode) {
-  //       print("Unexpected error parsing expiry: ${e.toString()}");
-  //     }
-  //     isLogin = false;
-  //   }
-  // } else {
-  //   if (kDebugMode) {
-  //     print("Expiry not found in SharedPreferences.");
-  //   }
-  //   isLogin = false;
-  // }
+  SharedPreferences sp = await SharedPreferences.getInstance();
+  bool isLogin = sp.getBool("isLogin") ?? false;
 
-  runApp(const MyApp());
+  runApp(MyApp(isLogin: ValueNotifier<bool>(isLogin)));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final ValueNotifier<bool> isLogin;
+
+  const MyApp({required this.isLogin, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -97,28 +61,68 @@ class MyApp extends StatelessWidget {
           fontFamily: GoogleFonts.raleway().fontFamily,
         ),
         themeMode: ThemeMode.system,
-        home: const LoginScreen(),
-        // home: isLogin
-        //     ? FutureBuilder<CupertinoPageRoute>(
-        //         future: userRoute(),
-        //         builder: (context, snapshot) {
-        //           if (snapshot.connectionState == ConnectionState.done) {
-        //             return Navigator(
-        //               pages: [
-        //                 CupertinoPage(
-        //                   child: snapshot.data!.builder(context),
-        //                 ),
-        //               ],
-        //               onPopPage: (route, result) => route.didPop(result),
-        //             );
-        //           } else {
-        //             return const LoadingScreen(message: "Redirecting ...");
-        //           }
-        //         },
-        //       )
-        //     : const LoginScreen(),
+        home: SplashScreen(
+          isLogin: isLogin,
+        ), // pass isLogin notifier to SplashScreen
       );
     });
+  }
+}
+
+class SplashScreen extends StatefulWidget {
+  final ValueNotifier<bool> isLogin;
+
+  SplashScreen({required this.isLogin, Key? key}) : super(key: key);
+
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 2), () {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (_) => ValueListenableBuilder<bool>(
+                    valueListenable: widget.isLogin,
+                    builder: (context, value, _) {
+                      return value
+                          ? FutureBuilder<CupertinoPageRoute>(
+                              future: userRoute(),
+                              builder: (context, snapshot) {
+                                if (snapshot.connectionState ==
+                                    ConnectionState.done) {
+                                  return Navigator(
+                                    pages: [
+                                      CupertinoPage(
+                                        child: snapshot.data!.builder(context),
+                                      ),
+                                    ],
+                                    onPopPage: (route, result) =>
+                                        route.didPop(result),
+                                  );
+                                } else {
+                                  return const LoadingScreen(
+                                      message: "Redirecting ...");
+                                }
+                              })
+                          : const LoginScreen();
+                    },
+                  )));
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.secondary,
+      body: Center(
+        child: Image.asset('assets/icon.png'),
+      ),
+    );
   }
 }
 

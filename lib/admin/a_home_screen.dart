@@ -98,28 +98,15 @@ class AdminHomeScreenState extends State<AdminHomeScreen> {
                     Icons.logout,
                     color: Theme.of(context).colorScheme.onSecondary,
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     SharedPreferences prefs =
-                        SharedPreferences.getInstance() as SharedPreferences;
-                    prefs.setBool('isLogin', false);
-                    Navigator.of(context).push(CupertinoPageRoute(
-                      builder: (context) {
-                        return const LoginScreen();
-                      },
-                    ));
-                  },
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.qr_code_scanner_rounded,
-                    color: Theme.of(context).colorScheme.onSecondary,
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).push(CupertinoPageRoute(
-                      builder: (context) {
-                        return const AttendanceDetailsPage();
-                      },
-                    ));
+                        await SharedPreferences.getInstance();
+                    await prefs.setBool('isLogin', false);
+                    Navigator.of(context).pushReplacement(
+                      CupertinoPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
+                    );
                   },
                 ),
                 IconButton(

@@ -57,6 +57,7 @@ dependencies:
   audioplayers: ^5.2.1
   flutter_beep: ^1.0.0
   flutter_file_dialog: ^3.0.2
+  flutter_splash_screen: ^2.0.1+1
 
 dev_dependencies:
   flutter_test:
@@ -82,7 +83,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
-  #   - images/a_dot_ham.jpeg
+    - assets/icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

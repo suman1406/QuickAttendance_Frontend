@@ -89,15 +89,15 @@ class ProfessorHomeScreenState extends State<ProfessorHomeScreen> {
                     Icons.logout,
                     color: Theme.of(context).colorScheme.onSecondary,
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     SharedPreferences prefs =
-                        SharedPreferences.getInstance() as SharedPreferences;
-                    prefs.setBool('isLogin', false);
-                    Navigator.of(context).push(CupertinoPageRoute(
-                      builder: (context) {
-                        return const LoginScreen();
-                      },
-                    ));
+                        await SharedPreferences.getInstance();
+                    await prefs.setBool('isLogin', false);
+                    Navigator.of(context).pushReplacement(
+                      CupertinoPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
+                    );
                   },
                 ),
                 IconButton(
