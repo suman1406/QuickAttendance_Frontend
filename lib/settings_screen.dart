@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'about_screen.dart';
 import 'admin/a_home_screen.dart';
 import 'admin/profile_screen.dart';
+import 'auth/login_screen.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -70,6 +71,25 @@ class SettingsPageState extends State<SettingsPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const AboutPage()),
+              );
+            },
+          ),
+          const Divider(
+            height: 1.0, // Add a divider between list tiles
+            color: Colors.grey,
+          ),
+          ListTile(
+            title: const Text(
+              'Logout',
+            ),
+            onTap: () async {
+              SharedPreferences prefs =
+                  await SharedPreferences.getInstance();
+              await prefs.setBool('isLogin', false);
+              Navigator.of(context).pushReplacement(
+                  CupertinoPageRoute(
+                    builder: (context) => const LoginScreen(),
+                  ),
               );
             },
           ),

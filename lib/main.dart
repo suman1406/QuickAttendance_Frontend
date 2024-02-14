@@ -82,7 +82,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(Duration(seconds: 0), () {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -117,10 +117,17 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Get screen size
+    Size screenSize = MediaQuery.of(context).size;
+
+    // Calculate icon size based on screen dimensions
+    double iconHeight = screenSize.height * 2;
+    double iconWidth = screenSize.width * 0.6;
+
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.secondary,
+      backgroundColor: Theme.of(context).colorScheme.onBackground,
       body: Center(
-        child: Image.asset('assets/icon.png'),
+        child: Image.asset('assets/icon.png', height: iconHeight, width: iconWidth,),
       ),
     );
   }

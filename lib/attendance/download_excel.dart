@@ -120,25 +120,39 @@ class DownloadExcelState extends State<DownloadExcel> {
           xcel.Worksheet sheet = workbook.worksheets[0];
 
           // Design the Excel sheet (replace with your requirements)
-          sheet.getRangeByName('A1').setText('Roll No');
-          sheet.getRangeByName('B1').setText('Total Attendance');
+          sheet.getRangeByName('A1').setText('Roll Numbers');
+          sheet.getRangeByName('B1').setText('Names');
 
+          // Set up dynamic date columns
           for (int i = 0; i < excelData.length; i++) {
             Map<String, dynamic> studentData = excelData[i];
             String rollNo = studentData['RollNo'] ?? '';
-            int totalAttendance = studentData['TOT_ATTD'] ?? 0;
+            String name = studentData['Name'] ?? '';
 
+            // Set Roll Numbers and Names in the fixed columns
             sheet.getRangeByIndex(i + 2, 1).setText(rollNo); // Start from row 2
-            sheet
-                .getRangeByIndex(i + 2, 2)
-                .setNumber(totalAttendance.toDouble());
+            sheet.getRangeByIndex(i + 2, 2).setText(name);
+
+            // Set dynamic date columns
+            int columnIndex = 3; // Start from the third column
+            studentData.forEach((key, value) {
+              if (key != 'RollNo' && key != 'Name') {
+                sheet
+                    .getRangeByIndex(1, columnIndex)
+                    .setText(key); // Set date in the header row
+                sheet
+                    .getRangeByIndex(i + 2, columnIndex)
+                    .setNumber(value.toDouble()); // Set attendance value
+                columnIndex++;
+              }
+            });
           }
 
           List<int> bytes = workbook.saveAsStream();
           Uint8List uint8List = Uint8List.fromList(bytes);
 
           final String fileName =
-              'attendance_data_${DateTime.now().millisecondsSinceEpoch}.xls';
+              'attendance_data_${DateTime.now().millisecondsSinceEpoch}.xlsx';
 
           final directory_download = '/storage/emulated/0/Download';
 
