@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:mime/mime.dart';
 import 'dart:typed_data';
 import 'dart:io';
@@ -123,30 +124,43 @@ class DownloadExcelState extends State<DownloadExcel> {
           sheet.getRangeByName('A1').setText('Roll Numbers');
           sheet.getRangeByName('B1').setText('Names');
 
-          // Set up dynamic date columns
+          // Create a Map to store data organized by slotID
+          Map<int, List<Map<String, dynamic>>> dataBySlot = {};
+
+          // Organize data by slotID
           for (int i = 0; i < excelData.length; i++) {
             Map<String, dynamic> studentData = excelData[i];
-            String rollNo = studentData['RollNo'] ?? '';
-            String name = studentData['Name'] ?? '';
+            int slotID = studentData['slotID'] ?? 0;
 
-            // Set Roll Numbers and Names in the fixed columns
-            sheet.getRangeByIndex(i + 2, 1).setText(rollNo); // Start from row 2
-            sheet.getRangeByIndex(i + 2, 2).setText(name);
+            if (!dataBySlot.containsKey(slotID)) {
+              dataBySlot[slotID] = [];
+            }
 
-            // Set dynamic date columns
-            int columnIndex = 3; // Start from the third column
-            studentData.forEach((key, value) {
-              if (key != 'RollNo' && key != 'Name') {
-                sheet
-                    .getRangeByIndex(1, columnIndex)
-                    .setText(key); // Set date in the header row
-                sheet
-                    .getRangeByIndex(i + 2, columnIndex)
-                    .setNumber(value.toDouble()); // Set attendance value
-                columnIndex++;
-              }
-            });
+            dataBySlot[slotID]?.add(studentData);
           }
+
+          // Set up dynamic date columns
+          int columnIndex = 3; // Start from the third column
+
+          dataBySlot.forEach((slotID, slotData) {
+            // Set header for each slot
+            sheet.getRangeByIndex(1, columnIndex).setText('2023-01-01_($slotID)');
+
+            // Set data for each student in the slot
+            for (int i = 0; i < slotData.length; i++) {
+              Map<String, dynamic> studentData = slotData[i];
+              sheet.getRangeByIndex(i + 2, 1).setText(studentData['RollNo'] ?? ''); // Roll Numbers
+              sheet.getRangeByIndex(i + 2, 2).setText(studentData['StdName'] ?? ''); // Names
+
+              // Convert 'AttDateTime' to readable format
+              DateTime attDateTime = DateTime.parse(studentData['AttDateTime']);
+              String formattedTime = DateFormat('HH:mm:ss').format(attDateTime);
+
+              sheet.getRangeByIndex(i + 2, columnIndex).setText(formattedTime); // Time
+            }
+
+            columnIndex++;
+          });
 
           List<int> bytes = workbook.saveAsStream();
           Uint8List uint8List = Uint8List.fromList(bytes);
