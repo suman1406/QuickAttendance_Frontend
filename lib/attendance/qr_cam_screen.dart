@@ -62,7 +62,7 @@ class QRScanningPageState extends State<QRScanningPage> {
           'Content-Type': 'application/json',
           'authorization': 'Bearer $secretCode',
         }),
-        data: dataList[0],
+        data: dataList.last,
       );
 
       // Handle the response as needed

@@ -132,30 +132,44 @@ class AddStudentsExcelUploadPageState
     );
 
     if (result != null) {
+      // Assuming the same setup as in your code
       String filePath = result.files.single.path!;
       File file = File(filePath);
 
       var bytes = file.readAsBytesSync();
       var excel = Excel.decodeBytes(bytes);
 
-      var table = excel.tables.keys.first;
-      var sheet = excel.tables[table];
+      List<List<String>> allData = [];
 
-      List<List<String>> newExcelData = [];
+// Iterate through sheets
+      for (var table in excel.tables.keys) {
+        var sheet = excel.tables[table];
 
-      // Process remaining rows
-      for (var row in sheet!.rows.skip(1)) {
-        if (row[0]?.value == null || row[1]?.value == null) {
-          break; // Stop processing when encountering an empty cell
+        // Skip processing if the sheet doesn't have rows or has less than 2 columns
+        if (sheet == null || sheet.maxColumns < 2) {
+          continue;
         }
-        newExcelData.add([
-          row[0]?.value.toString().trim() ?? '',
-          row[1]?.value.toString() ?? '',
-        ]);
+
+        // Process remaining rows
+        for (var row in sheet.rows.skip(1)) {
+          if (row[0]?.value == null || row[1]?.value == null) {
+            break; // Stop processing when encountering an empty cell
+          }
+
+          // Assuming Roll Number is in the first column and Student Name is in the second column
+          String rollNumber = row[1]?.value.toString().trim() ?? '';
+          String studentName = row[2]?.value.toString() ?? '';
+
+          // Print or use the Roll Number and Student Name as needed
+          print('Roll Number: $rollNumber, Student Name: $studentName');
+
+          // Optionally, you can store the data in a list
+          allData.add([rollNumber, studentName]);
+        }
       }
 
       setState(() {
-        excelData = newExcelData; // Update the state variable
+        excelData = allData; // Update the state variable
       });
 
       if (kDebugMode) {
@@ -177,8 +191,8 @@ class AddStudentsExcelUploadPageState
       }
 
       Map<String, dynamic> jsonData = {
-        'RollNo': uniqueRollNumbers,
-        'StuName': uniqueStudentNames,
+        'Roll Number': uniqueRollNumbers,
+        'Student Name': uniqueStudentNames,
       };
       String jsonString = jsonEncode(jsonData);
 
