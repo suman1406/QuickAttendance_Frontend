@@ -33,7 +33,16 @@ class QRScanningPageState extends State<QRScanningPage> {
   Future<void> sendScannedData(String scannedData) async {
     final String? slotIds = widget.slotIds;
     final String course = widget.course;
-    final String timestamp = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    // final String timestamp = DateFormat('yyyy-MM-dd').format(DateTime.now());
+
+    // Create a DateFormat instance with the desired pattern and IST time zone
+    DateFormat istDateFormat = DateFormat('yyyy-MM-dd', 'en_US').add_Hms();
+
+    // Format the current date and time in IST
+    String timestamp = istDateFormat.format(DateTime.now());
+
+    // Print the formatted timestamp
+    print('Formatted Timestamp in IST: $timestamp');
 
     final List<Map<String, dynamic>> dataList = scannedDataSet
         .map((scannedData) => {

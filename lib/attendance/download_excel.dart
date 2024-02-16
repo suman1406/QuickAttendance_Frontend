@@ -154,7 +154,13 @@ class DownloadExcelState extends State<DownloadExcel> {
 
               // Convert 'AttDateTime' to readable format
               DateTime attDateTime = DateTime.parse(studentData['AttDateTime']);
-              String formattedTime = DateFormat('HH:mm:ss').format(attDateTime);
+              // String formattedTime = DateFormat('H:mm:ss').format(attDateTime);
+
+              // Convert to IST by adding 5 hours and 30 minutes
+              DateTime istDateTime = attDateTime.add(const Duration(hours: 5, minutes: 30));
+
+              // Format the IST time as a string
+              String formattedTime = DateFormat('HH:mm:ss').format(istDateTime);
 
               sheet.getRangeByIndex(i + 2, columnIndex).setText(formattedTime); // Time
             }
