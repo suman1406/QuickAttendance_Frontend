@@ -157,11 +157,13 @@ class AddStudentsExcelUploadPageState
           }
 
           // Assuming Roll Number is in the first column and Student Name is in the second column
-          String rollNumber = row[1]?.value.toString().trim() ?? '';
-          String studentName = row[2]?.value.toString() ?? '';
+          String rollNumber = row[0]?.value.toString().trim() ?? '';
+          String studentName = row[1]?.value.toString() ?? '';
 
           // Print or use the Roll Number and Student Name as needed
-          print('Roll Number: $rollNumber, Student Name: $studentName');
+          if (kDebugMode) {
+            print('Roll Number: $rollNumber, Student Name: $studentName');
+          }
 
           // Optionally, you can store the data in a list
           allData.add([rollNumber, studentName]);

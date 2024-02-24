@@ -153,13 +153,13 @@ class AdminHomeScreenState extends State<AdminHomeScreen> {
                             },
                           ));
                         }),
-                        buildActionCard(context, 'View Attendance', () {
-                          Navigator.of(context).push(CupertinoPageRoute(
-                            builder: (context) {
-                              return const AttendanceSlotView();
-                            },
-                          ));
-                        }),
+                        // buildActionCard(context, 'View Attendance', () {
+                        //   Navigator.of(context).push(CupertinoPageRoute(
+                        //     builder: (context) {
+                        //       return const AttendanceSlotView();
+                        //     },
+                        //   ));
+                        // }),
                         buildActionCard(context, 'Download Excel', () {
                           Navigator.of(context).push(CupertinoPageRoute(
                             builder: (context) {
