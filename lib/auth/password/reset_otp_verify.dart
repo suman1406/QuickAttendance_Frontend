@@ -70,7 +70,7 @@ class OtpVerificationPageState extends State<OtpVerificationPage> {
         ),
         data: {
           'otp': _otpController.text,
-          'userEmail': userEmail,
+          'email': userEmail,
         },
       );
 

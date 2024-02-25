@@ -61,6 +61,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       // Print the response for debugging
       if (kDebugMode) {
         print(response.data);
+        print(response);
         print("===============");
         print(response.statusCode);
       }
@@ -70,7 +71,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         SharedPreferences sp = await SharedPreferences.getInstance();
         sp.setString("resetToken", response.data?['SECRET_TOKEN']);
         sp.setString("userEmail", _emailController.text);
-        sp.setString("userRole", response.data?['userRole']);
+        // sp.setString("userRole", response.data?['userRole']);
 
         showToast('Password reset email sent successfully');
         return "1";
