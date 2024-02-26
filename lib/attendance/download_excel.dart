@@ -124,27 +124,27 @@ class DownloadExcelState extends State<DownloadExcel> {
           sheet.getRangeByName('A1').setText('Roll Numbers');
           sheet.getRangeByName('B1').setText('Names');
 
-          // Create a Map to store data organized by slotID
+          // Create a Map to store data organized by periodNo
           Map<int, List<Map<String, dynamic>>> dataBySlot = {};
 
-          // Organize data by slotID
+          // Organize data by periodNo
           for (int i = 0; i < excelData.length; i++) {
             Map<String, dynamic> studentData = excelData[i];
-            int slotID = studentData['slotID'] ?? 0;
+            int periodNo = studentData['periodNo'] ?? 0;
 
-            if (!dataBySlot.containsKey(slotID)) {
-              dataBySlot[slotID] = [];
+            if (!dataBySlot.containsKey(periodNo)) {
+              dataBySlot[periodNo] = [];
             }
 
-            dataBySlot[slotID]?.add(studentData);
+            dataBySlot[periodNo]?.add(studentData);
           }
 
           // Set up dynamic date columns
           int columnIndex = 3; // Start from the third column
 
-          dataBySlot.forEach((slotID, slotData) {
+          dataBySlot.forEach((periodNo, slotData) {
             // Set header for each slot
-            sheet.getRangeByIndex(1, columnIndex).setText('2023-01-01_($slotID)');
+            sheet.getRangeByIndex(1, columnIndex).setText('2023-01-01_($periodNo)');
 
             // Set data for each student in the slot
             for (int i = 0; i < slotData.length; i++) {
