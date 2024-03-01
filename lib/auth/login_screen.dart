@@ -388,7 +388,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                     style: GoogleFonts.raleway(
                                       textStyle: TextStyle(
                                           fontSize: 32,
-                                          color: Theme.of(context).colorScheme.onBackground),
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onBackground),
                                     ),
                                   ),
                                   const SizedBox(
@@ -398,7 +400,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                     borderRadius: BorderRadius.circular(16.0),
                                     onTap: () {
                                       launchUrl(
-                                        Uri.parse("https://suman1406.github.io/Portfolio/"),
+                                        Uri.parse(
+                                            "https://suman1406.github.io/Portfolio/"),
                                         mode: LaunchMode.externalApplication,
                                       );
                                     },
@@ -410,11 +413,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                           color: Colors.grey.withOpacity(0.3),
                                           width: 1.0,
                                         ),
-                                        borderRadius: BorderRadius.circular(16.0),
+                                        borderRadius:
+                                            BorderRadius.circular(16.0),
                                       ),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: [
                                           const CircleAvatar(
                                             foregroundImage: AssetImage(
@@ -423,8 +429,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                             radius: 32.0,
                                           ),
                                           Column(
-                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Text(
                                                 "Suman Panigrahi",
@@ -457,13 +465,17 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 ),
                                               ),
                                               Chip(
-                                                padding: const EdgeInsets.all(1),
-                                                backgroundColor: Theme.of(context)
-                                                    .colorScheme
-                                                    .brightness ==
-                                                    Brightness.dark
-                                                    ? Colors.black
-                                                    : Theme.of(context).colorScheme.background,
+                                                padding:
+                                                    const EdgeInsets.all(1),
+                                                backgroundColor:
+                                                    Theme.of(context)
+                                                                .colorScheme
+                                                                .brightness ==
+                                                            Brightness.dark
+                                                        ? Colors.black
+                                                        : Theme.of(context)
+                                                            .colorScheme
+                                                            .background,
                                                 elevation: 3,
                                                 label: Text(
                                                   "Full Stack Developer",
@@ -471,9 +483,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                                       color: Theme.of(context)
                                                           .colorScheme
                                                           .onBackground,
-                                                      textStyle: const TextStyle(
-                                                          fontSize: 12,
-                                                          fontWeight: FontWeight.w500)),
+                                                      textStyle:
+                                                          const TextStyle(
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500)),
                                                 ),
                                               )
                                             ],
@@ -502,11 +517,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                           color: Colors.grey.withOpacity(0.3),
                                           width: 1.0,
                                         ),
-                                        borderRadius: BorderRadius.circular(16.0),
+                                        borderRadius:
+                                            BorderRadius.circular(16.0),
                                       ),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: [
                                           const CircleAvatar(
                                             foregroundImage: AssetImage(
@@ -515,8 +533,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                             radius: 32.0,
                                           ),
                                           Column(
-                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Text(
                                                 "Thanus Kumaara",
@@ -549,13 +569,17 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 ),
                                               ),
                                               Chip(
-                                                padding: const EdgeInsets.all(1),
-                                                backgroundColor: Theme.of(context)
-                                                    .colorScheme
-                                                    .brightness ==
-                                                    Brightness.dark
-                                                    ? Colors.black
-                                                    : Theme.of(context).colorScheme.background,
+                                                padding:
+                                                    const EdgeInsets.all(1),
+                                                backgroundColor:
+                                                    Theme.of(context)
+                                                                .colorScheme
+                                                                .brightness ==
+                                                            Brightness.dark
+                                                        ? Colors.black
+                                                        : Theme.of(context)
+                                                            .colorScheme
+                                                            .background,
                                                 elevation: 3,
                                                 label: Text(
                                                   "Backend Developer",
@@ -563,9 +587,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                                       color: Theme.of(context)
                                                           .colorScheme
                                                           .onBackground,
-                                                      textStyle: const TextStyle(
-                                                          fontSize: 12,
-                                                          fontWeight: FontWeight.w500)),
+                                                      textStyle:
+                                                          const TextStyle(
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500)),
                                                 ),
                                               )
                                             ],
@@ -582,7 +609,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                     style: GoogleFonts.raleway(
                                       textStyle: TextStyle(
                                           fontSize: 32,
-                                          color: Theme.of(context).colorScheme.onBackground),
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onBackground),
                                     ),
                                   ),
                                   const SizedBox(
@@ -592,7 +621,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                     borderRadius: BorderRadius.circular(16.0),
                                     onTap: () {
                                       launchUrl(
-                                        Uri.parse("https://www.amrita.edu/faculty/t-senthilkumar/"),
+                                        Uri.parse(
+                                            "https://www.amrita.edu/faculty/t-senthilkumar/"),
                                         mode: LaunchMode.externalApplication,
                                       );
                                     },
@@ -604,11 +634,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                           color: Colors.grey.withOpacity(0.3),
                                           width: 1.0,
                                         ),
-                                        borderRadius: BorderRadius.circular(16.0),
+                                        borderRadius:
+                                            BorderRadius.circular(16.0),
                                       ),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: [
                                           const CircleAvatar(
                                             foregroundImage: AssetImage(
@@ -617,8 +650,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                             radius: 32.0,
                                           ),
                                           Column(
-                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Text(
                                                 "Dr. Senthil Kumar T.",
@@ -651,13 +686,17 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 ),
                                               ),
                                               Chip(
-                                                padding: const EdgeInsets.all(1),
-                                                backgroundColor: Theme.of(context)
-                                                    .colorScheme
-                                                    .brightness ==
-                                                    Brightness.dark
-                                                    ? Colors.black
-                                                    : Theme.of(context).colorScheme.background,
+                                                padding:
+                                                    const EdgeInsets.all(1),
+                                                backgroundColor:
+                                                    Theme.of(context)
+                                                                .colorScheme
+                                                                .brightness ==
+                                                            Brightness.dark
+                                                        ? Colors.black
+                                                        : Theme.of(context)
+                                                            .colorScheme
+                                                            .background,
                                                 elevation: 3,
                                                 label: Text(
                                                   "Associate Professor",
@@ -665,9 +704,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                                       color: Theme.of(context)
                                                           .colorScheme
                                                           .onBackground,
-                                                      textStyle: const TextStyle(
-                                                          fontSize: 12,
-                                                          fontWeight: FontWeight.w500)),
+                                                      textStyle:
+                                                          const TextStyle(
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500)),
                                                 ),
                                               )
                                             ],
@@ -696,11 +738,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                           color: Colors.grey.withOpacity(0.3),
                                           width: 1.0,
                                         ),
-                                        borderRadius: BorderRadius.circular(16.0),
+                                        borderRadius:
+                                            BorderRadius.circular(16.0),
                                       ),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: [
                                           const CircleAvatar(
                                             foregroundImage: AssetImage(
@@ -709,8 +754,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                             radius: 32.0,
                                           ),
                                           Column(
-                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Text(
                                                 "B. Senthil Kumar",
@@ -743,13 +790,17 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 ),
                                               ),
                                               Chip(
-                                                padding: const EdgeInsets.all(1),
-                                                backgroundColor: Theme.of(context)
-                                                    .colorScheme
-                                                    .brightness ==
-                                                    Brightness.dark
-                                                    ? Colors.black
-                                                    : Theme.of(context).colorScheme.background,
+                                                padding:
+                                                    const EdgeInsets.all(1),
+                                                backgroundColor:
+                                                    Theme.of(context)
+                                                                .colorScheme
+                                                                .brightness ==
+                                                            Brightness.dark
+                                                        ? Colors.black
+                                                        : Theme.of(context)
+                                                            .colorScheme
+                                                            .background,
                                                 elevation: 3,
                                                 label: Text(
                                                   "Associate Professor",
@@ -757,9 +808,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                                       color: Theme.of(context)
                                                           .colorScheme
                                                           .onBackground,
-                                                      textStyle: const TextStyle(
-                                                          fontSize: 12,
-                                                          fontWeight: FontWeight.w500)),
+                                                      textStyle:
+                                                          const TextStyle(
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500)),
                                                 ),
                                               )
                                             ],
