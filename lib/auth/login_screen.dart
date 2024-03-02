@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quick_attednce/auth/password/forgot_password.dart';
 import 'package:quick_attednce/auth/otp_screen.dart';
@@ -126,12 +127,16 @@ class _LoginScreenState extends State<LoginScreen> {
 
       SharedPreferences sp = await SharedPreferences.getInstance();
 
+      //secure storage
+      const storage = FlutterSecureStorage();
+
       if (response.statusCode == 201 || response.statusCode == 200) {
         sp.setString("userEmail", _emailController.text);
         sp.setString("userName", response.data['profName']);
         sp.setString("userRole", response.data['userRole'].toString());
         sp.setString("expiry", response.data['exp'].toString());
         sp.setBool("isLogin", true);
+        await storage.write(key: 'isLogin', value: 'true');
 
         if (kDebugMode) {
           print('userRole============');

@@ -58,6 +58,7 @@ dependencies:
   flutter_beep: ^1.0.0
   flutter_file_dialog: ^3.0.2
   flutter_splash_screen: ^2.0.1+1
+  flutter_secure_storage: ^9.0.0
 
 dev_dependencies:
   flutter_test:
