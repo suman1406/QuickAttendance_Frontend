@@ -63,10 +63,10 @@ class EditUserPageState extends State<EditUserPage> {
         showToast('Internal Server Error');
       } else {
         showToast('Failed to fetch user data');
-        return Navigator.of(context).pushAndRemoveUntil(
+        return Navigator.of(context).pushReplacement(
             CupertinoPageRoute(builder: (context) {
           return const EnterEmailScreen();
-        }), (route) => false);
+        }),);
       }
     } catch (error) {
       if (kDebugMode) {
@@ -90,10 +90,10 @@ class EditUserPageState extends State<EditUserPage> {
         title: const Text('Edit User'),
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pushAndRemoveUntil(
+            Navigator.of(context).pushReplacement(
                 CupertinoPageRoute(builder: (context) {
               return const EnterEmailScreen();
-            }), (route) => false);
+            }),);
           },
           icon: Icon(
             Icons.arrow_back_ios_new_rounded,

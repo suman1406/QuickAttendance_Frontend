@@ -656,10 +656,10 @@ class AdminHomeScreenState extends State<AdminHomeScreen> {
             ElevatedButton(
               onPressed: () {
                 // Navigate to the user profile page
-                Navigator.of(context).pushAndRemoveUntil(
+                Navigator.of(context).pushReplacement(
                     CupertinoPageRoute(builder: (context) {
                   return const UserProfilePage();
-                }), (route) => false);
+                }),);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,

@@ -156,12 +156,12 @@ class OtpVerificationPageState extends State<OtpVerificationPage> {
                               if (res == "1")
                                 {
                                   // todo: Redirect to Prof Dashboard
-                                  Navigator.of(context).pushAndRemoveUntil(
+                                  Navigator.of(context).pushReplacement(
                                       CupertinoPageRoute(
                                     builder: (context) {
                                       return const ResetPasswordPage();
                                     },
-                                  ), (route) => false),
+                                  ),),
                                 }
                             },
                           );

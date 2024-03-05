@@ -195,10 +195,10 @@ class _OtpScreenState extends State<OtpScreen> {
                       expandedHeight: MediaQuery.of(context).size.height * 0.27,
                       leading: IconButton(
                         onPressed: () {
-                          Navigator.of(context).pushAndRemoveUntil(
+                          Navigator.of(context).pushReplacement(
                               CupertinoPageRoute(builder: (context) {
                             return const LoginScreen();
-                          }), (route) => false);
+                          }),);
                         },
                         icon: const Icon(Icons.arrow_back_ios_new_rounded),
                       ),
@@ -294,21 +294,21 @@ class _OtpScreenState extends State<OtpScreen> {
                                               {
                                                 // todo: Redirect to Prof Dashboard
                                                 Navigator.of(context)
-                                                    .pushAndRemoveUntil(
+                                                    .pushReplacement(
                                                         CupertinoPageRoute(
                                                             builder: (context) {
                                                   return const ProfessorHomeScreen();
-                                                }), (route) => false)
+                                                }),)
                                               }
                                             else if (res == "1")
                                               {
                                                 // todo: Redirect to Admin Dashboard
                                                 Navigator.of(context)
-                                                    .pushAndRemoveUntil(
+                                                    .pushReplacement(
                                                         CupertinoPageRoute(
                                                             builder: (context) {
                                                   return const AdminHomeScreen();
-                                                }), (route) => false)
+                                                }),)
                                               }
                                           });
                                     }

@@ -37,15 +37,15 @@ class AddClassPageState extends State<AddClassPage> {
             final String userRole = sp.getString("userRole").toString();
 
             if (userRole == "0") {
-              Navigator.of(context).pushAndRemoveUntil(
+              Navigator.of(context).pushReplacement(
                   CupertinoPageRoute(builder: (context) {
                 return const ProfessorHomeScreen();
-              }), (route) => false);
+              }),);
             } else if (userRole == "1") {
-              Navigator.of(context).pushAndRemoveUntil(
+              Navigator.of(context).pushReplacement(
                   CupertinoPageRoute(builder: (context) {
                 return const AdminHomeScreen();
-              }), (route) => false);
+              }),);
             }
           },
           icon: Icon(

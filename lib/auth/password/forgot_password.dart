@@ -136,10 +136,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           _sendResetEmail().then((res) => {
                                 if (res == "1")
                                   {
-                                    Navigator.of(context).pushAndRemoveUntil(
+                                    Navigator.of(context).pushReplacement(
                                         CupertinoPageRoute(builder: (context) {
                                       return const OtpVerificationPage();
-                                    }), (route) => false)
+                                    }),)
                                   }
                               });
                         }

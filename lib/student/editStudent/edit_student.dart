@@ -156,11 +156,10 @@ class EditStudentPageState extends State<EditStudentPage> {
         title: const Text('Edit Student'),
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pushAndRemoveUntil(
+            Navigator.of(context).pushReplacement(
               CupertinoPageRoute(builder: (context) {
-                return EnterRollNumberScreen();
+                return const EnterRollNumberScreen();
               }),
-              (route) => false,
             );
           },
           icon: Icon(

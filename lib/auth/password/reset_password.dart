@@ -161,12 +161,12 @@ class ResetPasswordPageState extends State<ResetPasswordPage> {
                             (res) => {
                               if (res == "1")
                                 {
-                                  Navigator.of(context).pushAndRemoveUntil(
+                                  Navigator.of(context).pushReplacement(
                                       CupertinoPageRoute(
                                     builder: (context) {
                                       return const LoginScreen();
                                     },
-                                  ), (route) => false),
+                                  ),),
                                 }
                             },
                           );

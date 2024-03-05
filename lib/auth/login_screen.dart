@@ -292,12 +292,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                   TextButton(
                                     onPressed: () {
                                       // todo: Redirect to Forgot Password Screen
-                                      Navigator.of(context).pushAndRemoveUntil(
+                                      Navigator.of(context).pushReplacement(
                                           CupertinoPageRoute(
                                         builder: (context) {
                                           return const ForgotPasswordPage();
                                         },
-                                      ), (route) => false);
+                                      ),);
                                     },
                                     style: ButtonStyle(
                                       shape: MaterialStateProperty.all(
@@ -332,33 +332,33 @@ class _LoginScreenState extends State<LoginScreen> {
                                               {
                                                 // todo: Redirect to Prof Dashboard
                                                 Navigator.of(context)
-                                                    .pushAndRemoveUntil(
+                                                    .pushReplacement(
                                                         CupertinoPageRoute(
                                                   builder: (context) {
                                                     return const ProfessorHomeScreen();
                                                   },
-                                                ), (route) => false),
+                                                ),),
                                               }
                                             else if (res == "1")
                                               {
                                                 // todo: Redirect to Admin Dashboard
                                                 Navigator.of(context)
-                                                    .pushAndRemoveUntil(
+                                                    .pushReplacement(
                                                         CupertinoPageRoute(
                                                   builder: (context) {
                                                     return const AdminHomeScreen();
                                                   },
-                                                ), (route) => false),
+                                                ),),
                                               }
                                             else if (res == "2")
                                               {
                                                 // todo: Redirect to OTP
                                                 Navigator.of(context)
-                                                    .pushAndRemoveUntil(
+                                                    .pushReplacement(
                                                         CupertinoPageRoute(
                                                             builder: (context) {
                                                   return const OtpScreen();
-                                                }), (route) => false),
+                                                }),),
                                               },
                                           },
                                         );

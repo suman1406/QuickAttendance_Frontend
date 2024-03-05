@@ -58,6 +58,8 @@ class AllUsersPageState extends State<AllUsersPage> {
       } else if (response.statusCode == 401) {
         showToast('Unauthorized Access');
       } else if (response.statusCode == 500) {
+        print(selectedUserRole);
+        print(response.data);
         showToast('Internal Server Error');
       } else {
         showToast('Failed to fetch users');
@@ -92,15 +94,15 @@ class AllUsersPageState extends State<AllUsersPage> {
             final String userRole = sp.getString("userRole").toString();
 
             if (userRole == "0") {
-              Navigator.of(context).pushAndRemoveUntil(
+              Navigator.of(context).pushReplacement(
                   CupertinoPageRoute(builder: (context) {
                 return const ProfessorHomeScreen();
-              }), (route) => false);
+              }),);
             } else if (userRole == "1") {
-              Navigator.of(context).pushAndRemoveUntil(
+              Navigator.of(context).pushReplacement(
                   CupertinoPageRoute(builder: (context) {
                 return const AdminHomeScreen();
-              }), (route) => false);
+              }),);
             }
           },
           icon: Icon(
