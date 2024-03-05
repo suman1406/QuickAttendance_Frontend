@@ -1,4 +1,4 @@
-package com.example.quick_attednce
+package com.suman.quick_attednce
 
 import io.flutter.embedding.android.FlutterActivity
 
