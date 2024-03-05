@@ -89,11 +89,22 @@ class EditUserPageState extends State<EditUserPage> {
       appBar: AppBar(
         title: const Text('Edit User'),
         leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pushReplacement(
-                CupertinoPageRoute(builder: (context) {
-              return const EnterEmailScreen();
-            }),);
+          onPressed: () async {
+            // final SharedPreferences sp = await SharedPreferences.getInstance();
+            // final String userRole = sp.getString("userRole").toString();
+
+            // if (userRole == "0") {
+            //   Navigator.of(context).pushReplacement(
+            //       CupertinoPageRoute(builder: (context) {
+            //         return const ProfessorHomeScreen();
+            //       }),);
+            // } else if (userRole == "1") {
+            //   Navigator.of(context).pushReplacement(
+            //       CupertinoPageRoute(builder: (context) {
+            //         return const AdminHomeScreen();
+            //       }),);
+            // }
+            Navigator.of(context).pop();
           },
           icon: Icon(
             Icons.arrow_back_ios_new_rounded,

@@ -9,16 +9,16 @@ import '../../components/toast.dart';
 class MultiCourseDropdown extends StatefulWidget {
   final Function(List<String>) onChanged;
 
-  const MultiCourseDropdown({Key? key, required this.onChanged});
+  const MultiCourseDropdown({super.key, required this.onChanged});
 
   @override
-  _MultiCourseDropdownState createState() => _MultiCourseDropdownState();
+  MultiCourseDropdownState createState() => MultiCourseDropdownState();
 }
 
-class _MultiCourseDropdownState extends State<MultiCourseDropdown> {
+class MultiCourseDropdownState extends State<MultiCourseDropdown> {
   List<String> courses = [];
   List<String> selectedCourses = [];
-  TextEditingController _courseController = TextEditingController();
+  final TextEditingController _courseController = TextEditingController();
 
   @override
   void initState() {
@@ -44,7 +44,9 @@ class _MultiCourseDropdownState extends State<MultiCourseDropdown> {
         ),
       );
 
-      print('Response: ${response.statusCode} - ${response.data}');
+      if (kDebugMode) {
+        print('Response: ${response.statusCode} - ${response.data}');
+      }
 
       if (response.statusCode == 200) {
         // Ensure that the response data is a Map and contains the 'courses' key

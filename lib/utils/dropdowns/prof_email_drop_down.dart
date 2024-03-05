@@ -12,10 +12,10 @@ class ProfEmailDropdown extends StatefulWidget {
   const ProfEmailDropdown({super.key, required this.onChanged});
 
   @override
-  _ProfEmailDropdownState createState() => _ProfEmailDropdownState();
+  ProfEmailDropdownState createState() => ProfEmailDropdownState();
 }
 
-class _ProfEmailDropdownState extends State<ProfEmailDropdown> {
+class ProfEmailDropdownState extends State<ProfEmailDropdown> {
   List<String> profEmails = [];
   String selectedProfEmail = 'Select a professor email'; // Set default value
 

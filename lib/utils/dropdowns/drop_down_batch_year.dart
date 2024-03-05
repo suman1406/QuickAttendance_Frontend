@@ -14,10 +14,10 @@ class BatchYearDropdown extends StatefulWidget {
       : super(key: key);
 
   @override
-  _BatchYearDropdownState createState() => _BatchYearDropdownState();
+  BatchYearDropdownState createState() => BatchYearDropdownState();
 }
 
-class _BatchYearDropdownState extends State<BatchYearDropdown> {
+class BatchYearDropdownState extends State<BatchYearDropdown> {
   List<int> batchYears = [];
   late int selectedBatchYear;
 
@@ -46,7 +46,9 @@ class _BatchYearDropdownState extends State<BatchYearDropdown> {
         ),
       );
 
-      print('Response: ${response.statusCode} - ${response.data}');
+      if (kDebugMode) {
+        print('Response: ${response.statusCode} - ${response.data}');
+      }
 
       if (response.statusCode == 200) {
         // Ensure that the response data is a Map and contains the 'batchYears' key

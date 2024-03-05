@@ -6,10 +6,10 @@ class SlotDropdown extends StatefulWidget {
   const SlotDropdown({super.key, required this.onChanged});
 
   @override
-  _SlotDropdownState createState() => _SlotDropdownState();
+  SlotDropdownState createState() => SlotDropdownState();
 }
 
-class _SlotDropdownState extends State<SlotDropdown> {
+class SlotDropdownState extends State<SlotDropdown> {
   late String selectedPeriodNo = '1'; // Initialize with a default value
 
   @override

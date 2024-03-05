@@ -14,10 +14,10 @@ class CourseDropdown extends StatefulWidget {
       : super(key: key);
 
   @override
-  _CourseDropdownState createState() => _CourseDropdownState();
+  CourseDropdownState createState() => CourseDropdownState();
 }
 
-class _CourseDropdownState extends State<CourseDropdown> {
+class CourseDropdownState extends State<CourseDropdown> {
   List<String> courses = [];
   late String selectedCourse;
 
@@ -46,7 +46,9 @@ class _CourseDropdownState extends State<CourseDropdown> {
         ),
       );
 
-      print('Response: ${response.statusCode} - ${response.data}');
+      if (kDebugMode) {
+        print('Response: ${response.statusCode} - ${response.data}');
+      }
 
       if (response.statusCode == 200) {
         // Ensure that the response data is a Map and contains the 'courses' key

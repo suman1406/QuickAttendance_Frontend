@@ -1,19 +1,15 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:quick_attednce/utils/api_constants.dart';
 import 'package:quick_attednce/utils/components/toast.dart';
 import 'package:quick_attednce/utils/dropdowns/drop_down_dept.dart';
-import 'package:quick_attednce/utils/dropdowns/drop_down_batchYear.dart';
+import 'package:quick_attednce/utils/dropdowns/drop_down_batch_year.dart';
 import 'package:quick_attednce/utils/dropdowns/drop_down_section.dart';
 import 'package:quick_attednce/utils/dropdowns/drop_down_semester.dart';
 import 'package:quick_attednce/utils/dropdowns/list_dropdown/multi_course_dropdown.dart';
-import 'package:quick_attednce/utils/dropdowns/list_dropdown/multi_profEmail_dropdown.dart';
+import 'package:quick_attednce/utils/dropdowns/list_dropdown/multi_prof_rmail_dropdown.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../admin/a_home_screen.dart';
-import '../professor/p_home_screen.dart';
 
 class DeleteProfCourseClassPage extends StatefulWidget {
   const DeleteProfCourseClassPage({Key? key}) : super(key: key);
@@ -174,20 +170,22 @@ class DeleteProfCourseClassPageState extends State<DeleteProfCourseClassPage> {
         title: const Text('Delete Prof/Course/Class'),
         leading: IconButton(
           onPressed: () async {
-            final SharedPreferences sp = await SharedPreferences.getInstance();
-            final String userRole = sp.getString("userRole").toString();
+            // final SharedPreferences sp = await SharedPreferences.getInstance();
+            // final String userRole = sp.getString("userRole").toString();
 
-            if (userRole == "0") {
-              Navigator.of(context).pushReplacement(
-                  CupertinoPageRoute(builder: (context) {
-                return const ProfessorHomeScreen();
-              }),);
-            } else if (userRole == "1") {
-              Navigator.of(context).pushReplacement(
-                  CupertinoPageRoute(builder: (context) {
-                return const AdminHomeScreen();
-              }),);
-            }
+            // if (userRole == "0") {
+            //   Navigator.of(context).pushReplacement(
+            //       CupertinoPageRoute(builder: (context) {
+            //     return const ProfessorHomeScreen();
+            //   }),);
+            // } else if (userRole == "1") {
+            //   Navigator.of(context).pushReplacement(
+            //       CupertinoPageRoute(builder: (context) {
+            //     return const AdminHomeScreen();
+            //   }),);
+            // }
+
+            Navigator.of(context).pop();
           },
           icon: Icon(
             Icons.arrow_back_ios_new_rounded,

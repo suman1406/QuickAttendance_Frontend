@@ -4,13 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 class UserRoleDropdown extends StatefulWidget {
   final Function(String) onChanged;
 
-  const UserRoleDropdown({Key? key, required this.onChanged});
+  const UserRoleDropdown({super.key, required this.onChanged});
 
   @override
-  _UserRoleDropdownState createState() => _UserRoleDropdownState();
+  UserRoleDropdownState createState() => UserRoleDropdownState();
 }
 
-class _UserRoleDropdownState extends State<UserRoleDropdown> {
+class UserRoleDropdownState extends State<UserRoleDropdown> {
   late int selectedUserRole; // No default role initially
 
   @override

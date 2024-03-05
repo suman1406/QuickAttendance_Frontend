@@ -29,7 +29,6 @@ class _OtpScreenState extends State<OtpScreen> {
   bool isPasswordVisible = false;
   bool isRePasswordVisible = false;
 
-  @override
   void initSate() {
     SharedPreferences.getInstance().then((sp) {
       if (sp.containsKey('newPassword')) {

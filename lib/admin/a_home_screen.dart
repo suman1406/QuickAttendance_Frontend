@@ -5,7 +5,6 @@ import 'package:quick_attednce/admin/editUser/enter_email.dart';
 import 'package:quick_attednce/admin/profile_screen.dart';
 import 'package:quick_attednce/admin/specific_users.dart';
 import 'package:quick_attednce/attendance/attendance_details.dart';
-import 'package:quick_attednce/attendance/attendance_for_slot.dart';
 import 'package:quick_attednce/attendance/download_excel.dart';
 import 'package:quick_attednce/auth/login_screen.dart';
 import 'package:quick_attednce/class/create_class.dart';

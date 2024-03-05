@@ -183,7 +183,7 @@ class ProfessorHomeScreenState extends State<ProfessorHomeScreen> {
                         buildActionCard(context, 'Edit Student', () {
                           Navigator.of(context).push(CupertinoPageRoute(
                             builder: (context) {
-                              return EnterRollNumberScreen();
+                              return const EnterRollNumberScreen();
                             },
                           ));
                         }),
@@ -536,9 +536,10 @@ class ProfessorHomeScreenState extends State<ProfessorHomeScreen> {
               onPressed: () {
                 // Navigate to the user profile page
                 Navigator.of(context).pushReplacement(
-                    CupertinoPageRoute(builder: (context) {
-                  return const UserProfilePage();
-                }),);
+                  CupertinoPageRoute(builder: (context) {
+                    return const UserProfilePage();
+                  }),
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
@@ -596,10 +597,10 @@ class CategoryCard extends StatefulWidget {
   });
 
   @override
-  _CategoryCardState createState() => _CategoryCardState();
+  CategoryCardState createState() => CategoryCardState();
 }
 
-class _CategoryCardState extends State<CategoryCard> {
+class CategoryCardState extends State<CategoryCard> {
   late bool _isExpanded;
 
   @override

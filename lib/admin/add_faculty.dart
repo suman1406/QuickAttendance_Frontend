@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:quick_attednce/utils/api_constants.dart';
 import 'package:quick_attednce/utils/components/toast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../professor/p_home_screen.dart';
 import '../utils/components/text_field.dart';
-import 'a_home_screen.dart';
 
 class AddFacultyPage extends StatefulWidget {
   const AddFacultyPage({Key? key}) : super(key: key);
@@ -133,20 +129,22 @@ class AddFacultyPageState extends State<AddFacultyPage> {
         title: const Text('Add Faculty'),
         leading: IconButton(
           onPressed: () async {
-            final SharedPreferences sp = await SharedPreferences.getInstance();
-            final String userRole = sp.getString("userRole").toString();
+            // final SharedPreferences sp = await SharedPreferences.getInstance();
+            // final String userRole = sp.getString("userRole").toString();
 
-            if (userRole == "0") {
-              Navigator.of(context).pushReplacement(
-                  CupertinoPageRoute(builder: (context) {
-                return const ProfessorHomeScreen();
-              }),);
-            } else if (userRole == "1") {
-              Navigator.of(context).pushReplacement(
-                  CupertinoPageRoute(builder: (context) {
-                return const AdminHomeScreen();
-              }),);
-            }
+            // if (userRole == "0") {
+            //   Navigator.of(context).pushReplacement(
+            //       CupertinoPageRoute(builder: (context) {
+            //     return const ProfessorHomeScreen();
+            //   }),);
+            // } else if (userRole == "1") {
+            //   Navigator.of(context).pushReplacement(
+            //       CupertinoPageRoute(builder: (context) {
+            //     return const AdminHomeScreen();
+            //   }),);
+            // }
+
+            Navigator.of(context).pop();
           },
           icon: Icon(
             Icons.arrow_back_ios_new_rounded,

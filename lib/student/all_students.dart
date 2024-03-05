@@ -1,15 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:quick_attednce/utils/api_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../professor/p_home_screen.dart';
-import '../utils/dropdowns/drop_down_batchYear.dart';
+import '../utils/dropdowns/drop_down_batch_year.dart';
 import '../utils/dropdowns/drop_down_dept.dart';
 import '../utils/dropdowns/drop_down_section.dart';
 import '../utils/dropdowns/drop_down_semester.dart';
-import '../admin/a_home_screen.dart';
 
 class AllStudentsPage extends StatefulWidget {
   const AllStudentsPage({Key? key}) : super(key: key);
@@ -53,25 +50,33 @@ class AllStudentsPageState extends State<AllStudentsPage> {
         },
       );
 
-      print('Dio Request: ${response}');
-      print(selectedBatchYear);
-      print(selectedDepartment);
-      print(selectedSection);
-      print(selectedSemester);
+      if (kDebugMode) {
+        print('Dio Request: $response');
+        print(selectedBatchYear);
+        print(selectedDepartment);
+        print(selectedSection);
+        print(selectedSemester);
+      }
 
       if (response.statusCode == 200) {
         setState(() {
           students = List<Map<String, dynamic>>.from(response.data['students']);
         });
 
-        print(students);
+        if (kDebugMode) {
+          print(students);
+        }
       } else {
         // Handle error
-        print('Failed to fetch students');
+        if (kDebugMode) {
+          print('Failed to fetch students');
+        }
       }
     } catch (error) {
       // Handle error
-      print('Error fetching students: $error');
+      if (kDebugMode) {
+        print('Error fetching students: $error');
+      }
     }
   }
 
@@ -83,20 +88,22 @@ class AllStudentsPageState extends State<AllStudentsPage> {
         title: const Text('Student Data'),
         leading: IconButton(
           onPressed: () async {
-            final SharedPreferences sp = await SharedPreferences.getInstance();
-            final String userRole = sp.getString("userRole").toString();
+            // final SharedPreferences sp = await SharedPreferences.getInstance();
+            // final String userRole = sp.getString("userRole").toString();
 
-            if (userRole == "0") {
-              Navigator.of(context).pushReplacement(
-                  CupertinoPageRoute(builder: (context) {
-                return const ProfessorHomeScreen();
-              }),);
-            } else if (userRole == "1") {
-              Navigator.of(context).pushReplacement(
-                  CupertinoPageRoute(builder: (context) {
-                return const AdminHomeScreen();
-              }),);
-            }
+            // if (userRole == "0") {
+            //   Navigator.of(context).pushReplacement(
+            //       CupertinoPageRoute(builder: (context) {
+            //     return const ProfessorHomeScreen();
+            //   }),);
+            // } else if (userRole == "1") {
+            //   Navigator.of(context).pushReplacement(
+            //       CupertinoPageRoute(builder: (context) {
+            //     return const AdminHomeScreen();
+            //   }),);
+            // }
+
+            Navigator.of(context).pop();
           },
           icon: Icon(
             Icons.arrow_back_ios_new_rounded,
@@ -163,31 +170,28 @@ class AllStudentsPageState extends State<AllStudentsPage> {
                 child: const Text('Get Student Data'),
               ),
               const SizedBox(height: 16.0),
-              Container(
-                // Replace Expanded with Container
-                child: ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true, // Set shrinkWrap to true
-                  itemCount: students.length,
-                  itemBuilder: (context, index) {
-                    final student = students[index];
-                    return Card(
-                      child: ListTile(
-                        title: Text('Roll No: ${student['RollNo']}'),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Name: ${student['StdName']}'),
-                            // Text('Batch Year: ${student['batchYear']}'),
-                            // Text('Department: ${student['dept']}'),
-                            // Text('Section: ${student['section']}'),
-                            // Text('Semester: ${student['semester']}'),
-                          ],
-                        ),
+              ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true, // Set shrinkWrap to true
+                itemCount: students.length,
+                itemBuilder: (context, index) {
+                  final student = students[index];
+                  return Card(
+                    child: ListTile(
+                      title: Text('Roll No: ${student['RollNo']}'),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Name: ${student['StdName']}'),
+                          // Text('Batch Year: ${student['batchYear']}'),
+                          // Text('Department: ${student['dept']}'),
+                          // Text('Section: ${student['section']}'),
+                          // Text('Semester: ${student['semester']}'),
+                        ],
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
             ],
           ),

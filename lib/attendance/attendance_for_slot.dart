@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../utils/api_constants.dart';
 import '../utils/components/text_field.dart';
 import '../utils/components/toast.dart';
-import '../utils/dropdowns/drop_down_batchYear.dart';
+import '../utils/dropdowns/drop_down_batch_year.dart';
 import '../utils/dropdowns/drop_down_course.dart';
 import '../utils/dropdowns/drop_down_dept.dart';
 import '../utils/dropdowns/drop_down_section.dart';
@@ -56,7 +56,9 @@ class AttendanceSlotViewState extends State<AttendanceSlotView> {
         ),
       );
 
-      print('Response: ${response.statusCode} - ${response.data}');
+      if (kDebugMode) {
+        print('Response: ${response.statusCode} - ${response.data}');
+      }
 
       if (response.statusCode == 200) {
         if (response.data is Map && response.data.containsKey('courses')) {
@@ -132,6 +134,29 @@ class AttendanceSlotViewState extends State<AttendanceSlotView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Attendance'),
+        leading: IconButton(
+          onPressed: () async {
+            // final SharedPreferences sp = await SharedPreferences.getInstance();
+            // final String userRole = sp.getString("userRole").toString();
+
+            // if (userRole == "0") {
+            //   Navigator.of(context).pushReplacement(
+            //       CupertinoPageRoute(builder: (context) {
+            //         return const ProfessorHomeScreen();
+            //       }),);
+            // } else if (userRole == "1") {
+            //   Navigator.of(context).pushReplacement(
+            //       CupertinoPageRoute(builder: (context) {
+            //         return const AdminHomeScreen();
+            //       }),);
+            // }
+            Navigator.of(context).pop();
+          },
+          icon: Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -212,11 +237,11 @@ class AttendanceSlotViewState extends State<AttendanceSlotView> {
                 onPressed: () async {
                   if (_periodController.text.isNotEmpty &&
                       selectedDate != null) {
-                    final String batchYear = _batchYearController.text;
-                    final String department = _departmentController.text;
-                    final String section = _sectionController.text;
-                    final String semester = _semesterController.text;
-                    final String course = _courseNameController.text;
+                    // final String batchYear = _batchYearController.text;
+                    // final String department = _departmentController.text;
+                    // final String section = _sectionController.text;
+                    // final String semester = _semesterController.text;
+                    // final String course = _courseNameController.text;
 
                     final String periodNo = _periodController.text;
                     final DateTime selectedDate = this.selectedDate!;

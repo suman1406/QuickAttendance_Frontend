@@ -1,17 +1,13 @@
 import 'package:intl/intl.dart';
-import 'package:mime/mime.dart';
-import 'dart:typed_data';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:dio/dio.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_xlsio/xlsio.dart' as xcel;
-import 'package:file_saver/file_saver.dart';
 import '../utils/api_constants.dart';
 import '../utils/components/toast.dart';
-import '../utils/dropdowns/drop_down_batchYear.dart';
+import '../utils/dropdowns/drop_down_batch_year.dart';
 import '../utils/dropdowns/drop_down_course.dart';
 import '../utils/dropdowns/drop_down_dept.dart';
 import '../utils/dropdowns/drop_down_section.dart';
@@ -51,7 +47,9 @@ class DownloadExcelState extends State<DownloadExcel> {
         ),
       );
 
-      print('Response: ${response.statusCode} - ${response.data}');
+      if (kDebugMode) {
+        print('Response: ${response.statusCode} - ${response.data}');
+      }
 
       if (response.statusCode == 200) {
         if (response.data is Map && response.data.containsKey('courses')) {
@@ -113,7 +111,9 @@ class DownloadExcelState extends State<DownloadExcel> {
         final dynamic responseData = response.data;
 
         if (responseData is List<dynamic>) {
-          print('Response data: $responseData');
+          if (kDebugMode) {
+            print('Response data: $responseData');
+          }
           List<Map<String, dynamic>> excelData =
               List<Map<String, dynamic>>.from(responseData);
 
@@ -174,13 +174,15 @@ class DownloadExcelState extends State<DownloadExcel> {
           final String fileName =
               'attendance_data_${DateTime.now().millisecondsSinceEpoch}.xlsx';
 
-          final directory_download = '/storage/emulated/0/Download';
+          const directoryDownload = '/storage/emulated/0/Download';
 
-          final String filePath = '$directory_download/$fileName';
+          final String filePath = '$directoryDownload/$fileName';
 
           File file = File(filePath);
           await file.writeAsBytes(uint8List);
-          print('File saved at: $filePath');
+          if (kDebugMode) {
+            print('File saved at: $filePath');
+          }
           showToast('Excel file generated successfully');
         } else {
           showToast('Failed to generate Excel file');
@@ -201,6 +203,29 @@ class DownloadExcelState extends State<DownloadExcel> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Attendance'),
+        leading: IconButton(
+          onPressed: () async {
+            // final SharedPreferences sp = await SharedPreferences.getInstance();
+            // final String userRole = sp.getString("userRole").toString();
+
+            // if (userRole == "0") {
+            //   Navigator.of(context).pushReplacement(
+            //       CupertinoPageRoute(builder: (context) {
+            //         return const ProfessorHomeScreen();
+            //       }),);
+            // } else if (userRole == "1") {
+            //   Navigator.of(context).pushReplacement(
+            //       CupertinoPageRoute(builder: (context) {
+            //         return const AdminHomeScreen();
+            //       }),);
+            // }
+            Navigator.of(context).pop();
+          },
+          icon: Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

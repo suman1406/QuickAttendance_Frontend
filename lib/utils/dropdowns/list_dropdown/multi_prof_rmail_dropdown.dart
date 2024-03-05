@@ -12,10 +12,10 @@ class MultiUserEmailDropdown extends StatefulWidget {
   const MultiUserEmailDropdown({super.key, required this.onChanged});
 
   @override
-  _MultiUserEmailDropdownState createState() => _MultiUserEmailDropdownState();
+  MultiUserEmailDropdownState createState() => MultiUserEmailDropdownState();
 }
 
-class _MultiUserEmailDropdownState extends State<MultiUserEmailDropdown> {
+class MultiUserEmailDropdownState extends State<MultiUserEmailDropdown> {
   List<String> email = [];
   List<String> selectedEmails = [];
   final TextEditingController _emailController = TextEditingController();
@@ -44,14 +44,18 @@ class _MultiUserEmailDropdownState extends State<MultiUserEmailDropdown> {
         ),
       );
 
-      print('Response: ${response.statusCode} - ${response.data}');
+      if (kDebugMode) {
+        print('Response: ${response.statusCode} - ${response.data}');
+      }
 
       if (response.statusCode == 200) {
         // Check if the response data is a List
         if (response.data is Map && response.data.containsKey('profs')) {
           List<dynamic> emailData = response.data['profs'];
 
-          print('Email Data: $emailData');
+          if (kDebugMode) {
+            print('Email Data: $emailData');
+          }
 
           if (emailData.isEmpty) {
             showToast('No users found');

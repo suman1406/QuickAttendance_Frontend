@@ -14,10 +14,10 @@ class SectionDropdown extends StatefulWidget {
       : super(key: key);
 
   @override
-  _SectionDropdownState createState() => _SectionDropdownState();
+  SectionDropdownState createState() => SectionDropdownState();
 }
 
-class _SectionDropdownState extends State<SectionDropdown> {
+class SectionDropdownState extends State<SectionDropdown> {
   List<String> sections = [];
   late String selectedSection;
 

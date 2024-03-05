@@ -72,17 +72,17 @@ class MyApp extends StatelessWidget {
 class SplashScreen extends StatefulWidget {
   final ValueNotifier<bool> isLogin;
 
-  SplashScreen({required this.isLogin, Key? key}) : super(key: key);
+  const SplashScreen({required this.isLogin, Key? key}) : super(key: key);
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  SplashScreenState createState() => SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 0), () {
+    Future.delayed(const Duration(seconds: 0), () {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(

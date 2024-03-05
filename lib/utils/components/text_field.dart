@@ -10,7 +10,7 @@ class MyTextField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final keyboardType;
-  final enabled;
+  final bool enabled;
 
   const MyTextField(
       {super.key,

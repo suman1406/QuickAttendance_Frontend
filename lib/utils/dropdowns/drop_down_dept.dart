@@ -12,10 +12,10 @@ class DepartmentDropdown extends StatefulWidget {
   const DepartmentDropdown({super.key, required this.onChanged});
 
   @override
-  _DepartmentDropdownState createState() => _DepartmentDropdownState();
+  DepartmentDropdownState createState() => DepartmentDropdownState();
 }
 
-class _DepartmentDropdownState extends State<DepartmentDropdown> {
+class DepartmentDropdownState extends State<DepartmentDropdown> {
   List<String> dept = [];
   String selectedDept = 'Select a department'; // Set default value
 

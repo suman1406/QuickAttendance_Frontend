@@ -1,14 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../professor/p_home_screen.dart';
 import '../utils/api_constants.dart';
 import '../utils/components/text_field.dart';
 import '../utils/components/toast.dart';
-import 'a_home_screen.dart';
 
 class DeleteFacultyPage extends StatefulWidget {
   const DeleteFacultyPage({super.key});
@@ -20,12 +16,12 @@ class DeleteFacultyPage extends StatefulWidget {
 class DeleteFacultyPageState extends State<DeleteFacultyPage> {
   final _formKey = GlobalKey<FormState>();
   final _userEmailController = TextEditingController();
-  final _ProfNameController = TextEditingController();
+  final _profNameController = TextEditingController();
 
   @override
   void dispose() {
     _userEmailController.dispose();
-    _ProfNameController.dispose();
+    _profNameController.dispose();
     super.dispose();
   }
 
@@ -51,7 +47,7 @@ class DeleteFacultyPageState extends State<DeleteFacultyPage> {
     return null;
   }
 
-  String? _ProfNameValidator(String? value) {
+  String? __profNameValidator(String? value) {
     // No space allowed. Can't be empty.
     if (value == null || value.isEmpty) {
       return 'Please enter your username';
@@ -62,7 +58,7 @@ class DeleteFacultyPageState extends State<DeleteFacultyPage> {
 
   void deleteFaculty() async {
     final userEmail = _userEmailController.text.trim();
-    final facultyProfName = _ProfNameController.text.trim();
+    final facultyProfName = _profNameController.text.trim();
 
     final SharedPreferences sp = await SharedPreferences.getInstance();
     final String? secretCode = sp.getString("SECRET_TOKEN");
@@ -103,7 +99,7 @@ class DeleteFacultyPageState extends State<DeleteFacultyPage> {
     } finally {
       setState(() {
         _userEmailController.clear();
-        _ProfNameController.clear();
+        _profNameController.clear();
       });
     }
   }
@@ -115,20 +111,22 @@ class DeleteFacultyPageState extends State<DeleteFacultyPage> {
         title: const Text('Delete Faculty'),
         leading: IconButton(
           onPressed: () async {
-            final SharedPreferences sp = await SharedPreferences.getInstance();
-            final String userRole = sp.getString("userRole").toString();
+            // final SharedPreferences sp = await SharedPreferences.getInstance();
+            // final String userRole = sp.getString("userRole").toString();
 
-            if (userRole == "0") {
-              Navigator.of(context).pushReplacement(
-                  CupertinoPageRoute(builder: (context) {
-                return const ProfessorHomeScreen();
-              }),);
-            } else if (userRole == "1") {
-              Navigator.of(context).pushReplacement(
-                  CupertinoPageRoute(builder: (context) {
-                return const AdminHomeScreen();
-              }),);
-            }
+            // if (userRole == "0") {
+            //   Navigator.of(context).pushReplacement(
+            //       CupertinoPageRoute(builder: (context) {
+            //     return const ProfessorHomeScreen();
+            //   }),);
+            // } else if (userRole == "1") {
+            //   Navigator.of(context).pushReplacement(
+            //       CupertinoPageRoute(builder: (context) {
+            //     return const AdminHomeScreen();
+            //   }),);
+            // }
+
+            Navigator.of(context).pop();
           },
           icon: Icon(
             Icons.arrow_back_ios_new_rounded,
@@ -143,10 +141,10 @@ class DeleteFacultyPageState extends State<DeleteFacultyPage> {
           child: Column(
             children: [
               MyTextField(
-                controller: _ProfNameController,
+                controller: _profNameController,
                 prefixIcon: const Icon(Icons.person_outline_rounded),
                 keyboardType: TextInputType.name,
-                validator: _ProfNameValidator,
+                validator: __profNameValidator,
                 labelText: 'Faculty Name',
                 hintText: 'Please enter faculty name',
                 obscureText: false,

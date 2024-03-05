@@ -1,9 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../../professor/p_home_screen.dart';
 import '../../utils/components/text_field.dart';
-import '../../admin/a_home_screen.dart';
 import 'edit_student.dart';
 
 class EnterRollNumberScreen extends StatefulWidget {
@@ -23,20 +19,22 @@ class EnterRollNumberScreenState extends State<EnterRollNumberScreen> {
         title: const Text('Enter Roll Number'),
         leading: IconButton(
           onPressed: () async {
-            final SharedPreferences sp = await SharedPreferences.getInstance();
-            final String userRole = sp.getString("userRole").toString();
+            // final SharedPreferences sp = await SharedPreferences.getInstance();
+            // final String userRole = sp.getString("userRole").toString();
 
-            if (userRole == "0") {
-              Navigator.of(context).pushReplacement(
-                  CupertinoPageRoute(builder: (context) {
-                return const ProfessorHomeScreen();
-              }),);
-            } else if (userRole == "1") {
-              Navigator.of(context).pushReplacement(
-                  CupertinoPageRoute(builder: (context) {
-                return const AdminHomeScreen();
-              }),);
-            }
+            // if (userRole == "0") {
+            //   Navigator.of(context).pushReplacement(
+            //       CupertinoPageRoute(builder: (context) {
+            //     return const ProfessorHomeScreen();
+            //   }),);
+            // } else if (userRole == "1") {
+            //   Navigator.of(context).pushReplacement(
+            //       CupertinoPageRoute(builder: (context) {
+            //     return const AdminHomeScreen();
+            //   }),);
+            // }
+
+            Navigator.of(context).pop();
           },
           icon: Icon(
             Icons.arrow_back_ios_new_rounded,

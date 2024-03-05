@@ -1,14 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:quick_attednce/utils/api_constants.dart';
-import 'package:quick_attednce/utils/dropdowns/drop_down_batchYear.dart';
+import 'package:quick_attednce/utils/dropdowns/drop_down_batch_year.dart';
 import 'package:quick_attednce/utils/components/toast.dart';
 import 'package:quick_attednce/utils/dropdowns/drop_down_dept.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../admin/a_home_screen.dart';
-import '../professor/p_home_screen.dart';
 import '../utils/dropdowns/drop_down_section.dart';
 import '../utils/dropdowns/drop_down_semester.dart';
 import 'dart:io';
@@ -58,10 +55,12 @@ class AddStudentsExcelUploadPageState
       return;
     }
 
-    print('===========================================');
-    print(rollNumbers);
-    print(studentNames);
-    print('===========================================');
+    if (kDebugMode) {
+      print('===========================================');
+      print(rollNumbers);
+      print(studentNames);
+      print('===========================================');
+    }
 
     final SharedPreferences sp = await SharedPreferences.getInstance();
     final String? secretCode = sp.getString("SECRET_TOKEN");
@@ -211,20 +210,22 @@ class AddStudentsExcelUploadPageState
         title: const Text('Add Students'),
         leading: IconButton(
           onPressed: () async {
-            final SharedPreferences sp = await SharedPreferences.getInstance();
-            final String userRole = sp.getString("userRole").toString();
+            // final SharedPreferences sp = await SharedPreferences.getInstance();
+            // final String userRole = sp.getString("userRole").toString();
 
-            if (userRole == "0") {
-              Navigator.of(context).pushReplacement(
-                  CupertinoPageRoute(builder: (context) {
-                return const ProfessorHomeScreen();
-              }),);
-            } else if (userRole == "1") {
-              Navigator.of(context).pushReplacement(
-                  CupertinoPageRoute(builder: (context) {
-                return const AdminHomeScreen();
-              }),);
-            }
+            // if (userRole == "0") {
+            //   Navigator.of(context).pushReplacement(
+            //       CupertinoPageRoute(builder: (context) {
+            //     return const ProfessorHomeScreen();
+            //   }),);
+            // } else if (userRole == "1") {
+            //   Navigator.of(context).pushReplacement(
+            //       CupertinoPageRoute(builder: (context) {
+            //     return const AdminHomeScreen();
+            //   }),);
+            // }
+
+            Navigator.of(context).pop();
           },
           icon: Icon(
             Icons.arrow_back_ios_new_rounded,

@@ -9,13 +9,13 @@ import '../components/toast.dart';
 class SemesterDropdown extends StatefulWidget {
   final Function(int) onChanged;
 
-  const SemesterDropdown({Key? key, required this.onChanged});
+  const SemesterDropdown({super.key, required this.onChanged});
 
   @override
-  _SemesterDropdownState createState() => _SemesterDropdownState();
+  SemesterDropdownState createState() => SemesterDropdownState();
 }
 
-class _SemesterDropdownState extends State<SemesterDropdown> {
+class SemesterDropdownState extends State<SemesterDropdown> {
   List<int> semesters = [];
   late int selectedSemester = 1; // Initialize with a default value
 
@@ -43,7 +43,9 @@ class _SemesterDropdownState extends State<SemesterDropdown> {
         ),
       );
 
-      print('Response: ${response.statusCode} - ${response.data}');
+      if (kDebugMode) {
+        print('Response: ${response.statusCode} - ${response.data}');
+      }
 
       if (response.statusCode == 200) {
         // Ensure that the response data is a Map and contains the 'semesters' key

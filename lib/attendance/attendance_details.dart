@@ -7,10 +7,7 @@ import 'package:quick_attednce/utils/api_constants.dart';
 import 'package:quick_attednce/utils/components/text_field.dart';
 import 'package:quick_attednce/utils/components/toast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../admin/a_home_screen.dart';
-import '../professor/p_home_screen.dart';
-import '../utils/dropdowns/drop_down_batchYear.dart';
+import '../utils/dropdowns/drop_down_batch_year.dart';
 import '../utils/dropdowns/drop_down_course.dart';
 import '../utils/dropdowns/drop_down_dept.dart';
 import '../utils/dropdowns/drop_down_section.dart';
@@ -64,7 +61,9 @@ class AttendanceDetailsPageState extends State<AttendanceDetailsPage> {
         ),
       );
 
-      print('Response: ${response.statusCode} - ${response.data}');
+      if (kDebugMode) {
+        print('Response: ${response.statusCode} - ${response.data}');
+      }
 
       if (response.statusCode == 200) {
         // Ensure that the response data is a Map and contains the 'courses' key
@@ -194,20 +193,21 @@ class AttendanceDetailsPageState extends State<AttendanceDetailsPage> {
         title: const Text('Add Attendance'),
         leading: IconButton(
           onPressed: () async {
-            final SharedPreferences sp = await SharedPreferences.getInstance();
-            final String userRole = sp.getString("userRole").toString();
+            // final SharedPreferences sp = await SharedPreferences.getInstance();
+            // final String userRole = sp.getString("userRole").toString();
 
-            if (userRole == "0") {
-              Navigator.of(context).pushReplacement(
-                  CupertinoPageRoute(builder: (context) {
-                    return const ProfessorHomeScreen();
-                  }),);
-            } else if (userRole == "1") {
-              Navigator.of(context).pushReplacement(
-                  CupertinoPageRoute(builder: (context) {
-                    return const AdminHomeScreen();
-                  }),);
-            }
+            // if (userRole == "0") {
+            //   Navigator.of(context).pushReplacement(
+            //       CupertinoPageRoute(builder: (context) {
+            //         return const ProfessorHomeScreen();
+            //       }),);
+            // } else if (userRole == "1") {
+            //   Navigator.of(context).pushReplacement(
+            //       CupertinoPageRoute(builder: (context) {
+            //         return const AdminHomeScreen();
+            //       }),);
+            // }
+            Navigator.of(context).pop();
           },
           icon: Icon(
             Icons.arrow_back_ios_new_rounded,
